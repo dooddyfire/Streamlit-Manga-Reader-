@@ -1,21 +1,154 @@
 import streamlit as st 
 import webbrowser
 import uuid
+from streamlit_option_menu import option_menu
+
+import streamlit.components.v1 as components
 
 
-#css
+# HTML + CSS for the Navbar
+navbar_html = """
 
-st.markdown("""
-            <style>
-@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    <style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
             
                 *{
             font-family:Kanit !important;
             }
-            </style>
-            """
-            
-            ,unsafe_allow_html=True)
+      /* Navbar container */
+      .navbar {
+        background-color: #333;
+        overflow: hidden;
+        border-radius:10px;
+        font-family:Kanit;
+      }
+
+      /* Navbar links */
+      .navbar a {
+        float: left;
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 20px;
+        text-decoration: none;
+        font-family:Kanit;
+      }
+
+      /* Hover effect on links */
+      .navbar a:hover {
+        background-color: #ddd;
+        border-radius:10px;
+        color: black;
+        font-family:Kanit;
+      }
+
+      /* Active link styling */
+      .navbar a.active {
+        background-color: rgb(255, 51, 51);
+        border-radius:10px;
+        color: white;
+        font-family:Kanit;
+      }
+    </style>
+  
+
+    <div class="navbar">
+      <a href="#" class="active">หน้าแรก</a>
+      <a href="#998b8830" target="_self">สินค้าของเรา</a>
+      
+      <a href="https://supapongai.com" target='_blank'>ติดต่อเรา</a>
+    </div>
+
+"""
+
+st.markdown(navbar_html,unsafe_allow_html=True)
+
+
+# HTML + JavaScript for the Slick Slider
+slider_html = """
+
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Include Slick CSS and JS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+    <style>
+/* Custom styling for the slider */
+      .slick-slide {
+        text-align: center;
+        background: #EEE;
+        padding: 20px;
+      }
+
+      .slick-prev, .slick-next {
+        font-size: 30px;
+        color: #000;
+      }
+
+      .slick-prev:before, .slick-next:before {
+        color: #fff;
+      }
+
+      /* Customizing the navigation dots */
+      .slick-dots {
+        bottom: 0px;  /* Position the dots 5px below the slider */
+      }
+
+      .slick-dots li button:before {
+        color: #fff;  /* Inactive dots in white */
+      }
+
+      /* Active dot color */
+      .slick-dots li.slick-active button:before {
+        color: yellow;  /* Active dot in yellow */
+      }
+
+      /* Make images full cover */
+      .slick-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;  /* Ensures the image covers the entire area */
+      }
+
+      /* Set a fixed height for the slider container */
+      .slick-slider {
+        width: 100%;
+        height: 400px;  /* You can adjust the height to fit your needs */
+      }
+    </style>
+
+
+    <!-- Slick Slider HTML structure -->
+    <div class="slick-slider">
+      <div><img src="https://jumpg-assets.tokyo-cdn.com/secure/top_banner/385640.jpg?hash=6U6AugwXkOAdX1grC_G59A&expires=2145884400" style='object-fit:cover' alt="Slide 1"></div>
+      <div><img src="https://jumpg-assets.tokyo-cdn.com/secure/top_banner/385640.jpg?hash=6U6AugwXkOAdX1grC_G59A&expires=2145884400" style='object-fit:cover' alt="Slide 2"></div>
+
+    </div>
+
+    <script>
+      // Initialize Slick slider
+      $(document).ready(function(){
+        $('.slick-slider').slick({
+          autoplay: true,
+          autoplaySpeed: 2000,
+          dots: true,  // Enable navigation dots
+          arrows: true,  // Enable navigation arrows
+          prevArrow: '<button type="button" class="slick-prev">Prev</button>',  // Custom prev arrow
+          nextArrow: '<button type="button" class="slick-next">Next</button>'  // Custom next arrow
+        });
+      });
+    </script>
+  
+
+"""
+
+
+
+
+
 
 with st.container():
     st.markdown(
@@ -31,7 +164,15 @@ with st.container():
    # Custom CSS to remove padding
 st.markdown(
             """
+
+
             <style>
+                @import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+            *{
+font-family:Kanit !important;            
+            }
+
             .st-emotion-cache-1jicfl2 {
     width: 100%;
     padding: 6rem 1rem 10rem;
@@ -45,13 +186,15 @@ st.markdown(
             """,
             unsafe_allow_html=True,
         )
-st.image('https://jumpg-assets.tokyo-cdn.com/secure/top_banner/385640.jpg?hash=6U6AugwXkOAdX1grC_G59A&expires=2145884400')
+#st.image('https://jumpg-assets.tokyo-cdn.com/secure/top_banner/385640.jpg?hash=6U6AugwXkOAdX1grC_G59A&expires=2145884400')
 
-
+# Inject the HTML and JavaScript into Streamlit
+components.html(slider_html,height=300)
 
 with st.container():
     st.markdown(
         """
+
         <h2 style="text-align: center;">
             เกี่ยวกับเรา
         </h2>
