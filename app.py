@@ -455,3 +455,43 @@ with st.sidebar:
 
     st.image('https://sweetiessofficial.com/wp-content/uploads/2024/07/Sweeties-Animation.gif')
     st.markdown('<h2 style="text-align:center;">ขอบคุณที่ใช้บริการค่ะ</h2>',unsafe_allow_html=True)
+
+st.markdown('<h2 style="text-align:center;font-size:25px;">รีวิวลูกค้า</h2>',unsafe_allow_html=True)
+textfield = st.text_input(label='รีวิวลูกค้า')
+
+star = st.slider(min_value=1,max_value=5,label='⭐ ระดับความพึงพอใจ')
+btn_review = st.button('แสดงความคิดเห็น',type='primary')
+
+# แจ้งเตือน
+if btn_review and star: 
+    st.success('ขอบคุณสำหรับการแสดงความคิดเห็นของคุณ')
+else: 
+    st.error('กรุณากรอกข้อมูลให้ครบทุกช่อง')
+
+st.markdown('<h2 style="text-align:center;font-size:25px;">ความเห็นลูกค้า</h2>',unsafe_allow_html=True)
+
+
+if btn_review and star: 
+
+    
+    if star == 1: 
+        st.markdown("จำนวนดาว : ⭐")
+        st.error(textfield)
+        st.error('😭 เสียใจจัง')
+    elif star == 2:
+        st.markdown("จำนวนดาว : ⭐⭐")
+        st.error(textfield)
+        st.error('😰 เสียใจจัง')
+    elif star == 3:
+        st.markdown("จำนวนดาว : ⭐⭐⭐")
+        st.warning(textfield)
+        st.warning('🙂 กลางๆ')
+    elif star == 4:
+        st.markdown("จำนวนดาว : ⭐⭐⭐⭐")
+        st.success(textfield)
+        st.success('😃 ดีใจ')
+    elif star == 5:
+        st.markdown("จำนวนดาว : ⭐⭐⭐⭐⭐")
+        st.success(textfield)
+        st.success('😁 ดีใจมาก')
+
